@@ -5,22 +5,22 @@ import scribus
 import sys
 
 if not scribus.haveDoc():
-    scribus.messageBox('Usage Error', 'You need a Document open', icon=0, button1=1)
+    scribus.messageBox('Usage Error', 'You need a Document open')
     sys.exit(2)
 
 if scribus.selectionCount() == 0:
-    scribus.messageBox('Usage Error', 'You need to select a frame', icon=0, button1=1)
+    scribus.messageBox('Usage Error', 'You need to select a frame')
     sys.exit(2)
 
 item = scribus.getSelectedObject()
 
 if (scribus.getObjectType(item) != 'TextFrame'):
-    scribus.messageBox('Usage Error', 'You need to select a text frame', icon=0, button1=1)
+    scribus.messageBox('Usage Error', 'You need to select a text frame')
     sys.exit(2)
 
 print(scribus.getTextLength(item))
 if scribus.getTextLength(item) > 0:
-    scribus.messageBox('Usage Error', 'The text frame should be empty', icon=0, button1=1)
+    scribus.messageBox('Usage Error', 'The text frame should be empty')
     sys.exit(2)
 
 answer = scribus.valueDialog('Numbered lines', 'Start number, step', '1,1') 
