@@ -59,7 +59,7 @@ else:
     scribus.messageBox('Error:', 'Cannot find ' + filename_svg);
 
 
-call(['inkscape', '--verb=FitCanvasToDrawing', '--verb=FileSave', '--verb=FileQuit', filename_svg])
+call(['inkscape', '-z', '--verb=FitCanvasToDrawing', '--verb=FileSave', '--verb=FileQuit', filename_svg])
 call(['inkscape', '-z', '--export-dpi=300', filename_svg, '-e', filename_png])
 
 if (scribus.getObjectType(item) == 'TextFrame'):
