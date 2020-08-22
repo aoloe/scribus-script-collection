@@ -33,9 +33,8 @@ def main():
     # import pages by creating them after the current one
     scribus.importPage(filename, pages, 1, 1)
 
-    for masterpage in masterpages:
-        page += 1
-        scribus.applyMasterPage(masterpage, page)
+    for i, masterpage in enumerate(masterpages):
+        scribus.applyMasterPage(masterpage, page + 1 + i)
 
 if __name__ == '__main__':
     main()
