@@ -6,8 +6,6 @@ Import all pages from a Scribus document and apply the master pages
 For more details see the README.md
 """
 
-import sys
-
 try:
     import scribus
 except ImportError:
@@ -15,11 +13,11 @@ except ImportError:
 
 def main():
     if not scribus.haveDoc():
-        sys.exit()
+        return
 
     filename = scribus.fileDialog('Select a document', 'Scribus document (*.sla)')
     if not filename:
-        sys.exit()
+        return
 
     # find the masterpages in use in the source document
     scribus.openDoc(filename)
