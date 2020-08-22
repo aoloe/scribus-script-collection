@@ -17,23 +17,25 @@ def main():
     if not scribus.haveDoc():
         sys.exit()
 
-    filename = scribus.fileDialog('Select a docuent', 'Scribus document (*.sla)')
+    filename = scribus.fileDialog('Select a document', 'Scribus document (*.sla)')
     if not filename:
         sys.exit()
-    
+
+    # find the masterpages in use in the source document
     scribus.openDoc(filename)
     pages = tuple(range(1, scribus.pageCount() + 1))
-    masterpages = []
-    for page in pages:
-        masterpages.append(scribus.getMasterPage(page))
+    masterpages = [scribus.getMasterPage(p) for p in pages]
     scribus.closeDoc()
-    # import pages and create the pages after the current one
+
+    # the current page before importing
     page = scribus.currentPage()
+
+    # import pages by creating them after the current one
     scribus.importPage(filename, pages, 1, 1)
-    page += 1
+
     for masterpage in masterpages:
-        scribus.applyMasterPage(masterpage, page)
         page += 1
+        scribus.applyMasterPage(masterpage, page)
 
 if __name__ == '__main__':
     main()
