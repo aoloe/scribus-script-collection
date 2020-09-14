@@ -1,11 +1,8 @@
 # encoding: utf-8
 # (c) MIT, ale rimoldi <ale@graphicslab.org>
 
-import logging
-from pathlib import Path
-
 """
-Export all Scribus Scripter API commands into a set of Markdown files.
+Replace multiple items by a copy of a specific item.
 For more details see the README.md
 """
 
@@ -17,15 +14,9 @@ except ImportError:
 def main():
     pass
 
-    SCRIPT_PATH = Path(__file__).parent
-
-    logging.basicConfig(
-        filename=SCRIPT_PATH.joinpath('logs.txt'),
-        level=logging.DEBUG, filemode='w')
-
     n = scribus.selectionCount()
     if n == 0:
-        logging.warning('No item selected')
+        scribus.messageBox('Error', 'No item selected')
         return
     
     items = []
