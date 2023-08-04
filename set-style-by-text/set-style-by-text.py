@@ -34,8 +34,6 @@ def main():
             scribus.selectObject(item)
             story_text = scribus.getAllText()
             for m in re.finditer(search_text, story_text):
-                print(m.start())
-                print(m.end())
                 scribus.selectText(m.start(), m.end() - m.start())
                 scribus.setCharacterStyle(character_style)
 
